@@ -11,12 +11,38 @@ public class MainActivity extends AppCompatActivity {
     private String operationSign = "+";
     private TextView mResultTv;
     private boolean newEnter = true;
+    private boolean isUsual = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mResultTv = findViewById(R.id.resultTv);
+        View usual = findViewById(R.id.usualLayout);
+        View unusual = findViewById(R.id.unusualLayout);
+        findViewById(R.id.switchBtn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(isUsual) {
+                    usual.setVisibility(View.INVISIBLE);
+                    unusual.setVisibility(View.VISIBLE);
+                    isUsual = false;
+                }
+
+            }
+        });
+
+        findViewById(R.id.newSwitchBtn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!isUsual) {
+                    usual.setVisibility(View.VISIBLE);
+                    unusual.setVisibility(View.GONE);
+                    isUsual = true;
+                }
+
+            }
+        });
 
     }
     public void writeNumbers(View view) {
